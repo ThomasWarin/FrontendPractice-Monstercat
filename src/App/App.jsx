@@ -1,28 +1,21 @@
 // Import du style
 import './App.scss'
 
-// Import d'images
-import castronautImg from '../assets/catstronaut.png'
+import { Header } from '../Layouts/Header'
+import { Article } from '../Layouts/Article'
 
-function App() {
+// Import d'images
+const baseURL = import.meta.env.BASE_URL
+const albumCover = `${baseURL}images/album.webp`
+
+
+export const App = () => {
     return (
         <div className="App">
-        <header className="App-header">
-            <h1 className="App-header-title">
-            <strong>React</strong> App + <strong>Vite</strong>
-            </h1>
-            <p className="App-header-update">Last update: 11-10-23</p>
-        </header>
-        <picture className="App-picture">
-            <img src={castronautImg} alt="Catstronaut Avatar" />
-        </picture>
-        <p className="App-description">
-            Reading this?
-            <br />
-            Then all systems are go!
-        </p>
+            <div className="App-background" style={{backgroundImage: `url(${albumCover})`}}/>
+
+            <Header />
+            <Article />
         </div>
     )
 }
-
-export default App

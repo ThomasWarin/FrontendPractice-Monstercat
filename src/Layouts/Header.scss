@@ -1,0 +1,93 @@
+@import './../styles/variables';
+
+.Header {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    background: transparent;
+    backdrop-filter: none;
+    pointer-events: none;
+    padding: 1.5rem 2rem;
+    width: 100%;
+    max-width: 1450px;
+
+    &-logo {
+        pointer-events: initial;
+        
+        img {
+            width: 50px;
+        }
+    }
+
+    &-socialLinks {
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        top: 100px;
+        right: 1.5rem;
+        pointer-events: initial;
+
+        &_icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a i svg {
+                fill: $white;
+                width: 18px;
+                height: 18px;
+            }
+        }
+    }
+
+    &-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        pointer-events: initial;
+
+        svg {
+            fill: $white;
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    @media (max-width: 1440px) {
+        max-width: 1242px;
+    }
+
+    @media (max-width: 1184px) {
+        max-width: 1184px;
+        height: 70px;
+        padding: 0.5rem 1rem;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+
+        &-socialLinks {
+            position: relative;
+            flex-direction: row;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    @media (max-width: 532px) {
+        height: 51px;
+
+        &-logo img {
+            width: 35px;
+        }
+
+        &-socialLinks {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,380 @@
+@import './../styles/variables';
+
+.Article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &-album {
+        display: flex;
+        align-items: center;
+        gap: 5rem;
+        margin-top: 12rem;
+        margin-bottom: 7rem;
+
+        &_cover {
+            padding-left: 1.25rem;
+            position: relative;
+
+            img {
+                width: 480px;
+            }
+        }
+
+        &_releaseDate {
+            position: absolute;
+            writing-mode: vertical-lr;
+            transform: rotateZ(180deg);
+            left: -0.5rem;
+            bottom: 0;
+            color: $white;
+            font-size: 18px;
+            font-style: italic;
+
+            strong {
+                color: $accent-color;
+                font-weight: 600;
+            }
+        }
+
+        &_infos {
+
+            &_album {
+                font-size: 3rem;
+                text-transform: uppercase;
+                font-family: $monumentExtendedRegular;
+                letter-spacing: 0.1em;
+
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: #F1F1F1;
+                -webkit-text-fill-color: transparent;
+            }
+
+            &_artist {
+                font-size: 2.25rem;
+                text-transform: uppercase;
+                font-family: $monumentExtendedRegular;
+                margin-top: 1rem;
+                margin-bottom: 3.5rem;
+            }
+
+            &_actions {
+                display: flex;
+                gap: 0.5rem;
+                
+                button {
+                    display: flex;
+                    gap: 0.5rem;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: $monumentExtendedRegular;
+                    font-size: 14px;
+                    text-transform: uppercase;
+                    height: 52px;
+                    padding: 0 1.75rem;
+                    cursor: pointer;
+                    transition: 0.2s;
+                    letter-spacing: 0.1em;
+
+                    span {
+                        position: relative;
+                        top: 0.5px;
+                    }
+
+                    &.listenNow {
+                        border: 1px solid $accent-color;
+                        background-color: $accent-color;
+                    }
+
+                    &.share {
+                        border: 1px solid $white;
+                    }
+                    
+                    &:hover {
+                        color: black;
+                        border: 1px solid $white;
+                        background-color: $white;
+
+                        svg {
+                            fill: black;
+                        }
+                    }
+
+                    svg {
+                        fill: $white;
+                        height: 14px;
+                        width: 14px;
+                        transition: 0.2s;
+                    }
+                }
+            }
+        }
+
+    }
+
+    &-platforms {
+        margin-bottom: 3rem;
+
+        &_title {
+            font-family: $monumentExtendedRegular;
+            font-size: 2.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        &_list {
+            display: flex;
+
+            li {
+                position: relative;
+                padding: 1rem;
+                height: 70px;
+                min-width: 72px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-top: 1px solid $white;
+                border-bottom: 1px solid $white;
+                border-right: 1px solid $white;
+
+                &:first-child {
+                    border: 1px solid $white;
+
+                    a {
+                        gap: 0.75rem;
+
+                        svg {
+                            width: auto;
+                            height: 21px;
+                        }
+                    }
+                }
+
+                a {
+                    height: 2.5rem;
+                    min-width: 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .tooltip {
+                        position: absolute;
+                        z-index: 20;
+                        top: -10px;
+                        visibility: hidden;
+                        opacity: 0;
+                        text-wrap: nowrap;
+                        text-transform: uppercase;
+                        background-color: $white;
+                        color: black;
+                        padding: 0.25rem 0.5rem;
+                        font-size: 12px;
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        transition: 0.2s;
+
+                        &::after {
+                            position: absolute;
+                            z-index: 8;
+                            bottom: -15px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            content: '';
+                            border-color: #F1F1F1 transparent transparent;
+                            border-width: 8px;
+                            border-style: solid;
+                        }
+                    }
+
+                    &:hover .tooltip,
+                    &:focus .tooltip {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+
+                svg {
+                    fill: $white;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
+
+    .section {
+        width: 1168px;
+    }
+
+    @media (max-width: 1440px) {
+        .section {
+            max-width: 960px;
+        }
+
+        &-album {
+            gap: 3rem;
+
+            &_cover img {
+                width: 408px;
+            }
+
+            &_infos {
+                &_album {
+                    font-size: 2rem;
+                }
+    
+                &_artist {
+                    font-size: 1.75rem;
+                }
+            }
+        }
+
+        &-platforms {
+    
+            &_title {
+                font-size: 2.25rem;
+            }
+        }
+    }
+
+    @media (max-width: 992px) {
+        .section {
+            max-width: 768px;
+        }
+
+        &-album {
+            flex-direction: column;
+            margin-bottom: 5rem;
+
+            &_cover img {
+                width: 712px;
+            }
+
+            &_infos {
+                width: 736px;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section {
+            max-width: 532px;
+            padding: 0 1rem;
+        }
+
+        &-album {
+            gap: 0;
+            margin-top: 7rem;
+            margin-bottom: 5rem;
+
+            &_releaseDate {
+                position: relative;
+                writing-mode: inherit;
+                transform: rotateZ(0);
+                margin: 3rem 0 2rem;
+                font-size: 1rem;
+            }
+
+            &_cover {
+                padding-left: 0;
+
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            &_infos {
+                width: 100%;
+
+                &_album,
+                &_artist {
+                    font-size: 22px;
+                }
+
+                &_album {
+                    -webkit-text-stroke-width: inherit;
+                    -webkit-text-stroke-color: inherit;
+                    -webkit-text-fill-color: inherit;
+                }
+
+                &_artist {
+                    margin-bottom: 1.5rem;
+                }
+
+                &_actions button {
+                    font-size: 12px;
+
+                    svg {
+                        width: 12px;
+                        height: 12px;
+                    }
+                }
+            }
+        }
+
+        &-platforms {
+            &_title {
+                font-size: 1.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            &_list {
+                li {
+                    height: 44px;
+                    min-width: 46px;
+                    padding: 0.25rem;
+
+                    &:first-child {
+                        width: 108px;
+
+                        a svg {
+                            height: 19px;
+                        }
+                    }
+
+                    a {
+                        height: 2rem;
+                        min-width: 2rem;
+
+                        .tooltip {
+                            top: -20px;
+                        }
+                    }
+
+                    svg {
+                        height: 16px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 532px) {
+
+        &-album {
+            &_releaseDate {
+                font-size: 14px;
+            }
+
+            &_infos {
+                &_artist {
+                    font-size: 16px;
+                }
+                &_actions button {
+                    height: 42px;
+                    padding: 0 1.5rem;
+                }
+            }
+        }
+
+        &-platforms {
+            &_title {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}

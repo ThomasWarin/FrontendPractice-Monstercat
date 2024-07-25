@@ -1,11 +1,33 @@
 @use 'reset';
-@use 'variables' as v;
+@import './variables';
 
-* {
-    font-family: 'Bricolage Grotesque', sans-serif !important;
-    box-sizing: border-box;
+@font-face {
+    font-family: 'MonumentExtented-Regular';
+    src: url('./../../public/fonts/MonumentExtended-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MonumentExtented-Ultrabold';
+    src: url('./../../public/fonts/MonumentExtended-Ultrabold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./../../public/fonts/Montserrat.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*, body {
+    font-family: $montserrat;
 }
 
 body {
-    font-family: 'Bricolage Grotesque', sans-serif !important;
+    background-color: black;
+    background-image: url(./../../public/images/background-tile.webp);
+    background-repeat: repeat;
+    background-attachment: scroll;
+    overflow-x: hidden;
 }
