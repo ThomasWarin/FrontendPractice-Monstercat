@@ -6,6 +6,7 @@ const baseURL = import.meta.env.BASE_URL
 const albumCover = `${baseURL}images/album.webp`
 import { PlaySVG, PauseSVG, ShareSVG, MonstercatSVG, BandcampSVG, SoundcloudSVG, AppleSVG, YoutubeSVG, SpotifySVG, MonsterCatSVG2 } from '../Components/SVG'
 
+import songs from '../data/songs'
 
 export const Article = () => {
     return (
@@ -74,7 +75,21 @@ export const Article = () => {
 
             </section>
             <section className="Article-songs section">
-
+                <h2 className="Article-songs_title">Track List</h2>
+                <ol className="Article-songs_list">
+                    {songs.map((song) => (
+                        <li key={song.number}>
+                            <span className="trackNumber">{song.number}</span>
+                            <button className="trackPlay"><PlaySVG/></button>
+                            <div className="trackInfos">
+                                <span className="trackInfos_title">{song.title}</span>
+                                <span className="trackInfos_artist">{song.artist}</span>
+                            </div>
+                            <span className="trackTime">{song.duration}</span>
+                            <button className="trackShare"><ShareSVG/></button>
+                        </li>
+                    ))}
+                </ol>
             </section>
         </article>
     )
