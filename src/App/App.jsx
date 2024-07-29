@@ -3,6 +3,7 @@ import './App.scss'
 
 import { Header } from '../Layouts/Header'
 import { Article } from '../Layouts/Article'
+import { Footer } from '../Layouts/Footer'
 
 // Import d'images
 const baseURL = import.meta.env.BASE_URL
@@ -16,6 +17,7 @@ export const App = () => {
 
             <Header />
             <Article />
+            <Footer />
         </div>
     )
 }

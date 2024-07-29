@@ -91,6 +91,19 @@ export const Article = () => {
                     ))}
                 </ol>
             </section>
+            <section className="Article-video section">
+                <h2 className="Article-video_title">Music Video</h2>
+                <iframe
+                    className="Article-video_frame"
+                    src="https://www.youtube.com/embed/7nObtWENgxA"
+                    title="Conro - Therapy [Monstercat Lyric Video]"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                />
+            </section>
+            <hr className="divider large" />
         </article>
     )
 }

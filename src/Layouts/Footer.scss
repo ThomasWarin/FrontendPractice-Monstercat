@@ -1,0 +1,166 @@
+@import './../styles/variables';
+
+.Footer {
+    width: 1168px;
+    
+    &-navigation {
+        display: flex;
+        gap: 1rem;
+
+        &_list,
+        &_form {
+            flex: 1;
+        }
+        
+        &_list {
+            font-family: $monumentExtendedRegular;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 18px;
+            line-height: 2rem;
+        }
+        &_form {            
+            &_title {
+                font-family: $monumentExtendedRegular;
+                font-size: 18px;
+                text-transform: uppercase;
+                color: $white-dark;
+            }
+
+            &_sentence {
+                font-style: italic;
+                margin: 1rem 0;
+                letter-spacing: 0.1em;
+                line-height: 1.75rem;
+            }
+
+            form {
+                margin-top: 2rem;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid #3e3b3c;
+                display: flex;
+
+                input {
+                    font-size: 18px;
+                    background-color: transparent;
+                    width: 100%;
+
+                    &::placeholder {
+                        color: $white-dark;
+                    }
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                button {
+                    padding: 0.5rem 1.5rem;
+                    cursor: pointer;
+                    transition: 0.2s;
+
+                    svg {
+                        fill: $white;
+                        height: 16px;
+                        width: 16px;
+                        transition: 0.2s;
+                    }
+
+                    &:hover {
+                        background-color: $white;
+                        
+                        svg {
+                            fill: black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-infos {
+        display: flex;
+        justify-content: space-between;
+
+        &_copyright {
+            min-width: 50%;
+            letter-spacing: 0.1em;
+            font-style: italic;
+        }
+
+        &_social {
+            min-width: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.25rem;
+
+            svg {
+                fill: $white;
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+
+    &-disclaimer {
+        margin: 5rem auto 2rem;
+        width: 60%;
+        font-style: italic;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    @media (max-width: 1440px) {
+        max-width: 960px;
+
+        &-navigation_form_sentence {
+            font-size: 14px;
+        }
+
+        &-infos_copyright {
+            font-size: 14px;
+        }
+
+        &-disclaimer {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 992px) {
+        max-width: 768px;
+        padding: 0 1rem;
+    }
+
+    @media (max-width: 768px) {
+        max-width: 532px;
+
+        &-navigation {
+            flex-direction: column;
+            gap: 0;
+
+            &_list {
+                font-size: 14px;
+                line-height: 1.75rem;
+            }
+
+            &_form {
+                margin-top: 3rem;
+
+                &_title {
+                    font-size: 14px;
+                }
+                &_sentence {
+                    text-wrap: pretty;
+                }
+            }
+        }
+
+        &-infos {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 532px) {
+        width: 100%;
+    }
+}

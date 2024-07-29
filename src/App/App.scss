@@ -3,7 +3,8 @@
 .App {
     color: $white;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     &-background {
         position: absolute;
@@ -18,4 +19,19 @@
         mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
     }
     
+    .divider {
+        width: 100%;
+        height: 1px;
+        background-color: $white;
+
+        &.large {
+            margin-top: 7rem;
+            margin-bottom: 3rem;
+        }
+
+        &.medium {
+            margin-top: 3rem;
+            margin-bottom: 2.5rem;
+        }
+    }
 }
