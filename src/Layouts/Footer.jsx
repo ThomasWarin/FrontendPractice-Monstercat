@@ -45,7 +45,7 @@ export const Footer = () => {
                     <li><a href="/" title="Monstercat Player"><MonstercatSVG /></a></li>
                 </ul>
             </div>
-            <p className="Footer-disclaimer"><small>This site is a reproduction of the Monstercat website based on an idea from Frontend Practice to showcase my frontend development skills.</small></p>
+            <p className="Footer-disclaimer"><small>This site is a reproduction of the <a href="https://www.monstercat.com/release/MCLP017">Monstercat album release page</a> based on an idea from <a href="https://www.frontendpractice.com/projects/monstercat">Frontend Practice</a> to showcase my frontend development skills.</small></p>
         </footer>
     )
 }

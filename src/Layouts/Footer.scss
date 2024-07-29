@@ -107,6 +107,12 @@
         font-style: italic;
         text-align: center;
         font-size: 12px;
+
+        a {
+            text-decoration: underline;
+            text-underline-offset: 1px;
+            font-weight: 700;
+        }
     }
 
     @media (max-width: 1440px) {
