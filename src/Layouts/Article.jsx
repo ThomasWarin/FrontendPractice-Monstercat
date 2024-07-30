@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react'
+
 // Import du style
 import './Article.scss'
 
@@ -6,9 +8,74 @@ const baseURL = import.meta.env.BASE_URL
 const albumCover = `${baseURL}images/album.webp`
 import { PlaySVG, PauseSVG, ShareSVG, MonstercatSVG, BandcampSVG, SoundcloudSVG, AppleSVG, YoutubeSVG, SpotifySVG, MonsterCatSVG2 } from '../Components/SVG'
 
-import songs from '../data/songs'
+import tracks from '../data/tracks'
 
 export const Article = () => {
+    const audioRef = useRef(new Audio())
+    const currentTrackIdRef = useRef(null)
+    const [currentTrack, setCurrentTrack] = useState(null)
+    const [currentTrackId, setCurrentTrackId] = useState(null)
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    
+    // Mise à jour de la référence chaque fois que currentTrackId change
+    useEffect(() => {
+        currentTrackIdRef.current = currentTrackId;
+    }, [currentTrackId]);
+    
+    // Ajoute un écouteur d'événement pour détecter la fin de la piste actuelle
+    useEffect(() => {
+        const audio = audioRef.current
+        const handleEnded = () => {
+            nextTrack();
+        };
+        
+        audio.addEventListener('ended', handleEnded)
+        
+        return () => {
+            audio.removeEventListener('ended', handleEnded)
+        }
+    }, [])
+    
+    
+    // Fonction pour jouer ou mettre en pause la piste
+    const playTrack = (track = currentTrack) => {
+        if (currentTrackId === track.id) {
+            if (isPlaying) {
+                audioRef.current.pause()
+            } else {
+                audioRef.current.play()
+            }
+            setIsPlaying(!isPlaying)
+        } else {
+            audioRef.current.src = track.src
+            audioRef.current.volume = 0.5
+            audioRef.current.play()
+            setCurrentTrack(track)
+            setCurrentTrackId(track.id)
+            setIsPlaying(true)
+        }
+    }
+
+    // Fonction pour passer à la piste suivante
+    const nextTrack = () => {
+        const currentId = currentTrackIdRef.current
+        const currentIndex = tracks.findIndex(track => track.id === currentId)
+
+        const nextIndex = currentIndex + 1;
+        if (nextIndex < tracks.length) {
+            const nextTrack = tracks[nextIndex];
+            playTrack(nextTrack);
+        } else {
+            // Arrêter la lecture si c'est la dernière piste
+            audioRef.current.pause();
+            setIsPlaying(false);
+            setCurrentTrack(null);
+            setCurrentTrackId(null);
+        }
+    };
+
+
     return (
         <article className="Article">
             <section className="Article-album section">
@@ -20,9 +87,8 @@ export const Article = () => {
                     <h1 className="Article-album_infos_album">Level Days</h1>
                     <p className="Article-album_infos_artist">Conro</p>
                     <div className="Article-album_infos_actions">
-                        <button className='listenNow' type="button">
-                            <PlaySVG />
-                            {/* <PauseSVG /> */}
+                        <button className='listenNow' type="button" onClick={() => playTrack(currentTrack ? currentTrack : tracks[0])}>
+                            { isPlaying ? <PauseSVG/> : <PlaySVG/> }
                             <span>Listen Now</span>
                         </button>
                         <button className='share' type="button">
@@ -77,15 +143,17 @@ export const Article = () => {
             <section className="Article-songs section">
                 <h2 className="Article-songs_title">Track List</h2>
                 <ol className="Article-songs_list">
-                    {songs.map((song) => (
-                        <li key={song.number}>
-                            <span className="trackNumber">{song.number}</span>
-                            <button className="trackPlay"><PlaySVG/></button>
+                    {tracks.map((track) => (
+                        <li key={track.id}>
+                            <span className="trackNumber">{track.id}</span>
+                            <button className="trackPlay" onClick={() => playTrack(track)}>
+                                { isPlaying && currentTrackId === track.id ? <PauseSVG/> : <PlaySVG/> }
+                            </button>
                             <div className="trackInfos">
-                                <span className="trackInfos_title">{song.title}</span>
-                                <span className="trackInfos_artist">{song.artist}</span>
+                                <span className="trackInfos_title">{track.title}</span>
+                                <span className="trackInfos_artist">{track.artist}</span>
                             </div>
-                            <span className="trackTime">{song.duration}</span>
+                            <span className="trackTime">{track.duration}</span>
                             <button className="trackShare"><ShareSVG/></button>
                         </li>
                     ))}
@@ -97,9 +165,8 @@ export const Article = () => {
                     className="Article-video_frame"
                     src="https://www.youtube.com/embed/7nObtWENgxA"
                     title="Conro - Therapy [Monstercat Lyric Video]"
-                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
+                    referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                 />
             </section>
